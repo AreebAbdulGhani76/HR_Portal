@@ -31,7 +31,7 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        router.push("/dashboard/ecommerce");
+        router.push("/dashboard/hr");
         router.refresh();
       } else {
         setError(data.message || "Invalid email or password");
@@ -51,8 +51,8 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center p-3 bg-indigo-600/20 text-indigo-400 rounded-2xl ring-1 ring-indigo-500/30">
             <Command className="w-8 h-8" />
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">Studio Admin</h1>
-          <p className="text-slate-400 text-sm">Sign in to access your E-commerce Dashboard</p>
+          <h1 className="text-3xl font-bold tracking-tight text-white">TalentPulse AI</h1>
+          <p className="text-slate-400 text-sm">Sign in to access your AI HR Admin Portal</p>
         </div>
 
         {/* Login Form Card */}
