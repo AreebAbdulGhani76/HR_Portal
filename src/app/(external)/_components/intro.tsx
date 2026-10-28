@@ -49,8 +49,14 @@ export async function Intro() {
 
       <div className="flex flex-wrap gap-2 sm:gap-3">
         <Button asChild>
-          <Link href="/dashboard/default" prefetch={false}>
-            Live demo
+          <Link href="/dashboard/hr" prefetch={false}>
+            HR Admin Portal
+            <ArrowUpRight aria-hidden="true" data-icon="inline-end" />
+          </Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="/careers" prefetch={false}>
+            Candidate Portal
             <ArrowUpRight aria-hidden="true" data-icon="inline-end" />
           </Link>
         </Button>
