@@ -80,7 +80,13 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={async () => {
+                await fetch("/api/auth/logout", { method: "POST" });
+                window.location.href = "/login";
+              }}
+              className="cursor-pointer text-red-500 focus:text-red-500 focus:bg-red-500/10"
+            >
               <LogOut />
               Log out
             </DropdownMenuItem>

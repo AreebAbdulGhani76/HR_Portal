@@ -8,11 +8,8 @@ import { ArrowRight, CheckCircle2, Command, Lock, Mail } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
-  const defaultEmail = process.env.NEXT_PUBLIC_AUTH_EMAIL || "abis@datacrumbs.org";
-  const defaultPassword = process.env.NEXT_PUBLIC_AUTH_PASSWORD || "abis@datacrumbs.org";
-
-  const [email, setEmail] = useState(defaultEmail);
-  const [password, setPassword] = useState(defaultPassword);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -110,8 +107,20 @@ export default function LoginPage() {
 
           {/* Credentials Info Box */}
           <div className="border-t border-slate-800/80 pt-4 space-y-2">
-            <div className="flex items-center gap-1.5 text-xs text-indigo-400 font-medium">
-              <CheckCircle2 className="w-3.5 h-3.5" /> Demo Login Credentials (Stored in .env)
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 text-xs text-indigo-400 font-medium">
+                <CheckCircle2 className="w-3.5 h-3.5" /> Demo Login Credentials
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail("abis@datacrumbs.org");
+                  setPassword("abis@datacrumbs.org");
+                }}
+                className="text-[11px] text-indigo-400 hover:text-indigo-300 underline font-medium cursor-pointer"
+              >
+                Auto-fill
+              </button>
             </div>
             <div className="bg-slate-950/80 border border-slate-800/60 rounded-xl p-3 text-xs space-y-1 font-mono text-slate-300">
               <div>
