@@ -5,18 +5,12 @@ export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
 
-    const envEmail = (process.env.AUTH_EMAIL || "abis@datacrumbs.org").toLowerCase().trim();
-    const envPassword = process.env.AUTH_PASSWORD || "abis@datacrumbs.org";
+    const envEmail = (process.env.AUTH_EMAIL || "").trim();
+    const envPassword = process.env.AUTH_PASSWORD || "";
 
-    const normalizedEmail = (email || "").toLowerCase().trim();
-    const allowedEmails = [envEmail, "abis@datacrumbs.org", "abdulghaniareeb@gmail.com"];
+    const inputEmail = (email || "").trim();
 
-    const isPasswordValid =
-      password === envPassword ||
-      password === "abis@datacrumbs.org" ||
-      (password && password.length >= 6);
-
-    if (allowedEmails.includes(normalizedEmail) && isPasswordValid) {
+    if (envEmail && envPassword && inputEmail.toLowerCase() === envEmail.toLowerCase() && password === envPassword) {
       const cookieStore = await cookies();
       cookieStore.set("auth_token", "authenticated_session_token", {
         httpOnly: true,
