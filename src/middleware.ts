@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
   // Redirect authenticated user away from /login to dashboard
   if (pathname === "/login") {
     if (authToken) {
-      const dashboardUrl = new URL("/dashboard/ecommerce", request.url);
+      const dashboardUrl = new URL("/dashboard/hr", request.url);
       return NextResponse.redirect(dashboardUrl);
     }
   }
