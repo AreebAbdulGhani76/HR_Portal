@@ -1,146 +1,117 @@
-# Next.js Admin Template with TypeScript & Shadcn UI
+# TalentPulse AI - Modern HR Recruitment & Candidate Screening Portal
 
-**Studio Admin** - Includes multiple dashboards, authentication layouts, customizable theme presets, and more.
+TalentPulse AI is a high-performance, full-stack HR Recruitment and Talent Acquisition platform built with Next.js 16, React 19, TypeScript, Supabase, Google Drive API, and Google Gemini AI.
 
-<img src="https://github.com/arhamkhnz/next-shadcn-admin-dashboard/blob/main/media/dashboard.png?version=5" alt="Dashboard Screenshot">
+---
 
-Most admin templates I found, free or paid, felt cluttered, outdated, or too rigid. I built this as a cleaner alternative with features often missing in others, such as theme toggling and layout controls, while keeping the design modern, minimal, and flexible.
+## Key Highlights
 
-> **View demo:** [studio admin](https://studio-admin.arhamkhnz.com)
+- **Careers Portal (`/careers`)**: Beautiful candidate-facing portal with real-time job openings, interactive filters, and an application submission flow.
+- **Automated Resume Storage (Google Drive)**: Resumes uploaded by candidates are stored in Google Drive with instant preview links.
+- **Multimodal AI Candidate Screening (Google Gemini AI)**: Evaluates resumes against role descriptions, calculates compatibility scores (0-100), generates fit verdicts, extracts key strengths, flags weaknesses, and creates custom interview questions.
+- **AI HR Recruitment Dashboard (`/dashboard/hr`)**: Real-time recruitment analytics, candidate drawer with deep AI insights, stage updates (Under Review, Shortlisted, Interview, Hired, Rejected), and role filtering.
+- **PostgreSQL Database & RLS (Supabase)**: Relational schema tracking jobs, candidates, and multi-stage applications with Row-Level Security policies.
 
-> [!NOTE]
-> Looking for the Base UI version? Check out [next-shadcn-admin-dashboard-baseui](https://github.com/arhamkhnz/next-shadcn-admin-dashboard-baseui).
->
-> Looking for the React Aria version? Check out [arhamkhnz/next-shadcn-admin-dashboard-aria](https://github.com/arhamkhnz/next-shadcn-admin-dashboard-aria).
->
-> Looking for the TanStack Start version? Check out [tanstack-shadcn-admin-dashboard](https://github.com/arhamkhnz/tanstack-shadcn-admin-dashboard).
-
-> [!TIP]
-> I’m also working on Nuxt.js and Svelte versions of this dashboard. They’ll be live soon.
-
-## Features
-
-- Built with Next.js 16, TypeScript, Tailwind CSS v4, and Shadcn UI  
-- Responsive and mobile-friendly  
-- Customizable theme presets (light/dark modes with color schemes like Tangerine, Brutalist, and more)  
-- Flexible layouts (collapsible sidebar, variable content widths)  
-- Authentication flows and screens  
-- Prebuilt dashboards (Default, CRM, Finance, Analytics, Productivity) plus legacy variants  
-- Role-Based Access Control (RBAC) with config-driven UI and multi-tenant support *(planned)*  
-
-> [!NOTE]
-> The default dashboard uses the **shadcn neutral** theme.  
-> It also includes additional color presets inspired by [Tweakcn](https://tweakcn.com):  
->
-> - Tangerine  
-> - Neo Brutalism  
-> - Soft Pop  
->
-> You can create more presets by following the same structure as the existing ones.
-
-> Looking for the **Next.js 15** version?  
-> Check out the [`archive/next15`](https://github.com/arhamkhnz/next-shadcn-admin-dashboard/tree/archive/next15) branch.  
-> This branch contains the setup prior to upgrading to Next 16 and the React Compiler.
-
-> Looking for the **Next.js 14 + Tailwind CSS v3** version?  
-> Check out the [`archive/next14-tailwindv3`](https://github.com/arhamkhnz/next-shadcn-admin-dashboard/tree/archive/next14-tailwindv3) branch.  
-> It has a different color theme and is not actively maintained, but I try to keep it updated with major changes.  
+---
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 (App Router), TypeScript, Tailwind CSS v4  
-- **UI Components**: Shadcn UI  
-- **Validation**: Zod  
-- **Forms & State Management**: React Hook Form, Zustand  
-- **Tables & Data Handling**: TanStack Table  
-- **Tooling & DX**: Biome, Husky  
+- **Framework**: Next.js 16 (App Router), React 19, TypeScript
+- **Styling**: Tailwind CSS v4, Lucide Icons, Radix UI primitives
+- **Database**: Supabase (PostgreSQL with RLS policies)
+- **AI Intelligence**: Google Gemini AI (`gemini-3-flash-preview` / `gemini-1.5-flash`)
+- **File Storage**: Google Drive API (OAuth2)
+- **Authentication**: Route-protected sessions with HTTP-only cookies
 
-## Screens
-
-### Available
-- Default Dashboard  
-- CRM Dashboard  
-- Finance Dashboard  
-- Analytics Dashboard  
-- Productivity Dashboard  
-- E-commerce Dashboard  
-- Academy Dashboard  
-- Logistics Dashboard  
-- Infrastructure Dashboard  
-- File Manager  
-- Patient Monitoring  
-- Chat Page  
-- Email Page  
-- Profile  
-- Users Management  
-- Roles Management  
-- Kanban Board  
-- Tasks Page  
-- Invoice Page  
-- Calendar Page  
-- Authentication (4 screens)  
-- Legacy: Default v1, CRM v1, Finance v1, Analytics v1
-
-### Planned
-I’ve added all the planned screens. Feel free to open an issue for requesting something specific.
-
-## Colocation File System Architecture
-
-This project follows a **colocation-based architecture** each feature keeps its own pages, components, and logic inside its route folder.  
-Shared UI, hooks, and configuration live at the top level, making the codebase modular, scalable, and easier to maintain as the app grows.
-
-For a full breakdown of the structure with examples, see the [Next Colocation Template](https://github.com/arhamkhnz/next-colocation-template).
+---
 
 ## Getting Started
 
-You can run this project locally, or deploy it instantly with Vercel.
+### 1. Clone & Install Dependencies
 
-### Deploy with Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Farhamkhnz%2Fnext-shadcn-admin-dashboard)
-
-_Deploy your own copy with one click._
-
-### Run locally
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/arhamkhnz/next-shadcn-admin-dashboard.git
-   ```
-   
-2. **Navigate into the project**
-   ```bash
-    cd next-shadcn-admin-dashboard
-   ```
-   
-3. **Install dependencies**
-   ```bash
-    npm install
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-Your app will be running at [http://localhost:3000](http://localhost:3000)
-
-### Formatting and Linting
-
-Format, lint, and organize imports
 ```bash
-npx @biomejs/biome check --write
+git clone https://github.com/AreebAbdulGhani76/HR_Portal.git
+cd HR_Portal
+npm install
 ```
-> For more information on available rules, fixes, and CLI options, refer to the [Biome documentation](https://biomejs.dev/).
+
+### 2. Configure Environment Variables
+
+Create a `.env.local` file in the root directory (refer to `.env.example`):
+
+```env
+# Authentication
+AUTH_EMAIL="abis@datacrumbs.org"
+AUTH_PASSWORD="abis@datacrumbs.org"
+NEXT_PUBLIC_AUTH_EMAIL="abis@datacrumbs.org"
+NEXT_PUBLIC_AUTH_PASSWORD="abis@datacrumbs.org"
+
+# Supabase Credentials
+NEXT_PUBLIC_SUPABASE_URL="https://<project-id>.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="<your-supabase-anon-key>"
+SUPABASE_SERVICE_ROLE_KEY="<your-supabase-service-role-key>"
+SUPABASE_PROJECT_ID="<your-project-id>"
+
+# Google Drive Credentials
+GOOGLE_DRIVE_CLIENT_ID="<your-client-id>.apps.googleusercontent.com"
+GOOGLE_DRIVE_CLIENT_SECRET="<your-client-secret>"
+GOOGLE_DRIVE_REFRESH_TOKEN="<your-refresh-token>"
+GOOGLE_DRIVE_FOLDER_ID="<your-google-drive-folder-id>"
+
+# Gemini AI API Key
+GEMINI_API_KEY="<your-gemini-api-key>"
+```
+
+### 3. Setup Database Schema
+
+Run the provided SQL script [`supabase-schema.sql`](./supabase-schema.sql) in your Supabase SQL Editor. It creates:
+- `public.jobs`
+- `public.candidates`
+- `public.applications`
+- Row-Level Security (RLS) policies and initial seed data.
+
+### 4. Run Development Server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser:
+- **Careers Portal**: `http://localhost:3000/careers`
+- **HR Dashboard**: `http://localhost:3000/dashboard/hr`
+- **Candidate Pipeline**: `http://localhost:3000/dashboard/candidates`
+- **Admin Login**: `http://localhost:3000/login`
 
 ---
 
-> [!IMPORTANT]  
-> This project is updated frequently. If you’re working from a fork or an older clone, pull the latest changes before syncing. Some updates may include breaking changes.
+## Project Structure
+
+```text
+├── src/
+│   ├── app/
+│   │   ├── (main)/dashboard/
+│   │   │   ├── hr/              # HR Analytics & Candidate Table
+│   │   │   ├── candidates/      # Candidate Pipeline View
+│   │   │   ├── jobs/            # Job Listings Management
+│   │   │   └── _components/     # Candidate Detail Drawer & Widgets
+│   │   ├── api/
+│   │   │   ├── admin/           # Admin candidate & application endpoints
+│   │   │   ├── auth/            # Sign-in authentication route
+│   │   │   └── careers/         # Job listings and application submission
+│   │   ├── careers/             # Public-facing Careers Portal
+│   │   └── login/               # Admin sign-in screen
+│   ├── components/ui/           # Reusable Radix UI & Tailwind components
+│   └── lib/
+│       ├── gemini-ai.ts         # Google Gemini AI screening engine
+│       ├── google-drive.ts      # Google Drive resume uploader
+│       ├── hr-service.ts        # Candidate and job management logic
+│       └── supabase.ts          # Supabase client and service role
+├── supabase-schema.sql          # Database schema and seed data
+└── vercel.json                  # Deployment configuration
+```
 
 ---
 
-Contributions are welcome. Feel free to open issues, feature requests, or start a discussion.
+## License
 
-
-**Happy Vibe Coding!**
+MIT License. Designed and maintained for modern talent acquisition.
