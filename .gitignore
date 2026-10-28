@@ -29,6 +29,17 @@ yarn-error.log*
 # local env files
 .env
 .env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.env.*
+*.key
+*.cert
+credentials*.json
+service-account*.json
+client_secret*.json
 proposal-493608-b0e3f0115d99.json
 
 # vercel
