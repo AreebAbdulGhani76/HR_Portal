@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { ArrowRight, CheckCircle2, Command, Lock, Mail } from "lucide-react";
+import { ArrowRight, Command, Lock, Mail } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -71,7 +71,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="abis@datacrumbs.org"
+                  placeholder="admin@talentpulse.ai"
                   className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 text-white text-sm rounded-xl pl-10 pr-4 py-2.5 outline-none transition"
                 />
               </div>
@@ -104,35 +104,6 @@ export default function LoginPage() {
               {!loading && <ArrowRight className="w-4 h-4" />}
             </button>
           </form>
-
-          {/* Credentials Info Box */}
-          <div className="border-t border-slate-800/80 pt-4 space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-xs text-indigo-400 font-medium">
-                <CheckCircle2 className="w-3.5 h-3.5" /> Demo Login Credentials
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setEmail("abis@datacrumbs.org");
-                  setPassword("abis@datacrumbs.org");
-                }}
-                className="text-[11px] text-indigo-400 hover:text-indigo-300 underline font-medium cursor-pointer"
-              >
-                Auto-fill
-              </button>
-            </div>
-            <div className="bg-slate-950/80 border border-slate-800/60 rounded-xl p-3 text-xs space-y-1 font-mono text-slate-300">
-              <div>
-                <span className="text-slate-500">Email:</span>{" "}
-                <span className="text-indigo-300">abis@datacrumbs.org</span>
-              </div>
-              <div>
-                <span className="text-slate-500">Password:</span>{" "}
-                <span className="text-indigo-300">abis@datacrumbs.org</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
