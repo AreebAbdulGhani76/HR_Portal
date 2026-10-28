@@ -3,12 +3,12 @@ import packageJson from "../../package.json";
 const currentYear = new Date().getFullYear();
 
 export const APP_CONFIG = {
-  name: "Studio Admin",
+  name: "TalentPulse AI",
   version: packageJson.version,
-  copyright: `© ${currentYear}, Studio Admin.`,
+  copyright: `© ${currentYear}, TalentPulse AI HR.`,
   meta: {
-    title: "Studio Admin: Open Source Admin Dashboard with shadcn/ui",
+    title: "TalentPulse AI: Autonomous HR & Candidate Intelligence",
     description:
-      "A polished open source shadcn/ui admin dashboard with 25+ screens and editions for Radix UI, Base UI, React Aria, and TanStack Start.",
+      "Enterprise HR recruitment portal for automated talent acquisition, candidate screening, and hiring pipelines.",
   },
 };
