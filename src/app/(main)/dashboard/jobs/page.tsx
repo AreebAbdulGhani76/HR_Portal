@@ -67,29 +67,55 @@ export default function JobsManagementPage() {
     return map;
   }, [applications]);
 
-  const handleCreateJob = (e: React.FormEvent) => {
+  const handleCreateJob = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title || !description) return;
 
-    const newJob: Job = {
-      id: `job-${Date.now()}`,
-      title,
-      department,
-      location,
-      type,
-      experience,
-      salary,
-      description,
-      requirements: requirementsStr
-        .split("\n")
-        .map((r) => r.trim())
-        .filter(Boolean),
-      responsibilities: ["Drive execution and architectural excellence."],
-      status: "Active",
-      created_at: new Date().toISOString(),
-    };
+    const requirements = requirementsStr
+      .split("\n")
+      .map((r) => r.trim())
+      .filter(Boolean);
 
-    setJobs((prev) => [newJob, ...prev]);
+    try {
+      const res = await fetch("/api/careers/jobs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          department,
+          location,
+          type,
+          experience,
+          salary,
+          description,
+          requirements,
+          responsibilities: ["Drive execution and architectural excellence."],
+        }),
+      });
+      const data = await res.json();
+      if (data.success && data.job) {
+        setJobs((prev) => [data.job, ...prev]);
+      } else {
+        const fallbackJob: Job = {
+          id: `job-${Date.now()}`,
+          title,
+          department,
+          location,
+          type,
+          experience,
+          salary,
+          description,
+          requirements,
+          responsibilities: ["Drive execution and architectural excellence."],
+          status: "Active",
+          created_at: new Date().toISOString(),
+        };
+        setJobs((prev) => [fallbackJob, ...prev]);
+      }
+    } catch (err) {
+      console.error("Failed to create job:", err);
+    }
+
     setCreateModalOpen(false);
 
     // Reset form

@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { createSessionToken } from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
@@ -11,8 +12,9 @@ export async function POST(request: Request) {
     const inputEmail = (email || "").trim();
 
     if (envEmail && envPassword && inputEmail.toLowerCase() === envEmail.toLowerCase() && password === envPassword) {
+      const token = await createSessionToken(inputEmail);
       const cookieStore = await cookies();
-      cookieStore.set("auth_token", "authenticated_session_token", {
+      cookieStore.set("auth_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",

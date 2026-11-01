@@ -1,4 +1,4 @@
-# 🤖 Agentic AI HR & Talent Intelligence Portal
+# ⚡ TalentPulse AI — Autonomous Recruitment & Talent Intelligence Engine
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React 19](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
@@ -6,7 +6,7 @@
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-An enterprise-grade, open-source **Agentic AI Human Resources & Recruitment Platform** designed for high-velocity hiring teams. Powered by multi-agent coordination, strict safety gates, and seamless Human-in-the-Loop (HITL) governance.
+An enterprise-grade, open-source **Autonomous Talent Intelligence & Recruitment Operating System** designed for high-velocity hiring teams. Powered by multi-agent coordination, strict safety gates, and seamless Human-in-the-Loop (HITL) governance.
 
 ---
 
@@ -36,18 +36,18 @@ The hiring pipeline is implemented as a deterministic finite state machine (FSM)
 stateDiagram-v2
     [*] --> ApplicationSubmitted: Candidate applies via /careers
 
-    state "Gate 1: PII & Bias Shield" as Gate1 {
+    state "Gate 1: PII and Bias Shield" as Gate1 {
         ApplicationSubmitted --> RedactingPII: Ingestion
         RedactingPII --> SanitizedProfile: Strip name, gender, age, address
     }
 
     SanitizedProfile --> SemanticScoring: Match against Job Rubric
 
-    state "Confidence Check & Safety Gate" as Gate2 {
+    state "Gate 2: Confidence Evaluation" as Gate2 {
         SemanticScoring --> ConfidenceEvaluation
-        ConfidenceEvaluation --> HighConfidence: Match Score >= 85%
-        ConfidenceEvaluation --> AmbiguousCase: 60% <= Match Score < 85%
-        ConfidenceEvaluation --> HardGateVerification: Match Score < 60%
+        ConfidenceEvaluation --> HighConfidence: Score 85 percent and above
+        ConfidenceEvaluation --> AmbiguousCase: Score between 60 to 84 percent
+        ConfidenceEvaluation --> HardGateVerification: Score below 60 percent
     }
 
     state "Human-in-the-Loop (HITL) Triage" as HITL_Triage {
@@ -66,9 +66,9 @@ stateDiagram-v2
     AutomatedTechAssessment --> InterviewIntelligence: Technical Rubric Evaluation
     InterviewIntelligence --> PanelInterview: Schedule Human Interview
 
-    state "Gate 3: Offer & Salary Equity" as Gate3 {
+    state "Gate 3: Offer and Salary Equity" as Gate3 {
         PanelInterview --> CompensationAgent: Formulate Recommendation
-        CompensationAgent --> SalaryEquityAudit: Validate Band & Legal Parity
+        CompensationAgent --> SalaryEquityAudit: Validate Band and Legal Parity
     }
 
     state "Gate 4: Final Executive Sign-Off" as Gate4 {
@@ -103,41 +103,41 @@ To guarantee fair, ethical, and explainable hiring, the platform enforces mandat
 ```mermaid
 flowchart TD
     subgraph Clients["User Experience Layer"]
-        Careers["🌐 Public Careers Portal<br/>(/careers)"]
-        Dashboard["🏢 HR Command Dashboard<br/>(/dashboard/hr)"]
+        Careers["Public Careers Portal (/careers)"]
+        Dashboard["HR Command Dashboard (/dashboard/hr)"]
     end
 
     subgraph Orchestration["Agent Coordination Layer"]
-        Router["⚡ Event Bus & Pipeline Coordinator"]
-        AnonymizerAgent["🕵️ PII Redactor Agent"]
-        MatcherAgent["🎯 Semantic Fit Agent"]
-        InterviewAgent["🎙️ Interview Intelligence Agent"]
-        CompAgent["💰 Compensation Agent"]
+        Router["Event Bus and Pipeline Coordinator"]
+        AnonymizerAgent["PII Redactor Agent"]
+        MatcherAgent["Semantic Fit Agent"]
+        InterviewAgent["Interview Intelligence Agent"]
+        CompAgent["Compensation Agent"]
     end
 
-    subgraph Guardrails["Safety & Policy Layer"]
-        BiasFilter["⚖️ Equal Opportunity & Bias Filter"]
-        FactChecker["🔍 Resume Grounding Engine"]
-        EquityGuard["📊 Salary Band & Equity Policy Gate"]
-        HITLQueue["👤 Human-in-the-Loop Dispatcher"]
+    subgraph Guardrails["Safety and Policy Layer"]
+        BiasFilter["Equal Opportunity and Bias Filter"]
+        FactChecker["Resume Grounding Engine"]
+        EquityGuard["Salary Band and Equity Policy Gate"]
+        HITLQueue["Human-in-the-Loop Dispatcher"]
     end
 
-    subgraph Storage["Persistence & Audit Trail"]
-        DB[("🗄️ Application Database")]
-        VectorStore[("🧠 Semantic Vector Store")]
-        AuditLogs[("📜 Immutable Compliance Logs")]
+    subgraph Storage["Persistence and Audit Trail"]
+        DB[("Application Database")]
+        VectorStore[("Semantic Vector Store")]
+        AuditLogs[("Immutable Compliance Logs")]
     end
 
     Careers -->|Submit Application| Router
-    Dashboard -->|Review & Action| Router
+    Dashboard -->|Review and Action| Router
 
     Router --> AnonymizerAgent
     AnonymizerAgent --> BiasFilter
     BiasFilter --> MatcherAgent
     MatcherAgent --> FactChecker
     
-    FactChecker -->|Score < 85% or Edge Case| HITLQueue
-    FactChecker -->|Score >= 85%| InterviewAgent
+    FactChecker -->|Score Below 85% or Ambiguous| HITLQueue
+    FactChecker -->|Score 85% and Above| InterviewAgent
     
     HITLQueue -->|Escalation Notification| Dashboard
     InterviewAgent --> CompAgent
@@ -146,7 +146,8 @@ flowchart TD
 
     Router -.-> DB
     MatcherAgent -.-> VectorStore
-    Guardrails -.-> AuditLogs
+    EquityGuard -.-> AuditLogs
+    BiasFilter -.-> AuditLogs
 ```
 
 ---

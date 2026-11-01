@@ -206,7 +206,7 @@ WHERE NOT EXISTS (
   SELECT 1 FROM public.applications a WHERE a.candidate_email = c.email
 );
 
--- 8. Enable Row Level Security (RLS) & Set Policies
+-- 8. Enable Row Level Security (RLS) & Set Strict Security Policies
 ALTER TABLE public.jobs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.candidates ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.applications ENABLE ROW LEVEL SECURITY;
@@ -221,15 +221,35 @@ DROP POLICY IF EXISTS "Public insert applications" ON public.applications;
 DROP POLICY IF EXISTS "Public select applications" ON public.applications;
 DROP POLICY IF EXISTS "Admin manage applications" ON public.applications;
 
--- Allow public read of active jobs for candidate portal
-CREATE POLICY "Public read active jobs" ON public.jobs FOR SELECT USING (true);
-CREATE POLICY "Admin manage jobs" ON public.jobs FOR ALL USING (true);
+-- 1. JOBS: Allow public read of active jobs for candidate portal
+CREATE POLICY "Public read active jobs" ON public.jobs 
+  FOR SELECT 
+  USING (status = 'Active');
 
--- Allow candidate application submissions and reads
-CREATE POLICY "Public insert candidates" ON public.candidates FOR INSERT WITH CHECK (true);
-CREATE POLICY "Public select candidates" ON public.candidates FOR SELECT USING (true);
-CREATE POLICY "Admin manage candidates" ON public.candidates FOR ALL USING (true);
+CREATE POLICY "Admin manage jobs" ON public.jobs 
+  FOR ALL 
+  TO service_role 
+  USING (true) 
+  WITH CHECK (true);
 
-CREATE POLICY "Public insert applications" ON public.applications FOR INSERT WITH CHECK (true);
-CREATE POLICY "Public select applications" ON public.applications FOR SELECT USING (true);
-CREATE POLICY "Admin manage applications" ON public.applications FOR ALL USING (true);
+-- 2. CANDIDATES: Public can ONLY insert during application submission. NO public reads.
+CREATE POLICY "Public insert candidates" ON public.candidates 
+  FOR INSERT 
+  WITH CHECK (true);
+
+CREATE POLICY "Admin manage candidates" ON public.candidates 
+  FOR ALL 
+  TO service_role 
+  USING (true) 
+  WITH CHECK (true);
+
+-- 3. APPLICATIONS: Public can ONLY submit applications. NO public reads of PII/AI scores.
+CREATE POLICY "Public insert applications" ON public.applications 
+  FOR INSERT 
+  WITH CHECK (true);
+
+CREATE POLICY "Admin manage applications" ON public.applications 
+  FOR ALL 
+  TO service_role 
+  USING (true) 
+  WITH CHECK (true);

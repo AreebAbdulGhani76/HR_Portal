@@ -469,6 +469,47 @@ export async function getJobById(id: string): Promise<Job | null> {
 }
 
 /**
+ * Create a new job position and persist to Supabase and memory store
+ */
+export async function createJob(
+  jobData: Omit<Job, "id" | "created_at">,
+): Promise<Job> {
+  const newJob: Job = {
+    ...jobData,
+    id: `job-${Date.now()}`,
+    created_at: new Date().toISOString(),
+  };
+
+  try {
+    const { data, error } = await supabaseAdmin
+      .from("jobs")
+      .insert({
+        title: jobData.title,
+        department: jobData.department,
+        location: jobData.location,
+        type: jobData.type,
+        experience: jobData.experience,
+        salary: jobData.salary,
+        description: jobData.description,
+        requirements: jobData.requirements,
+        responsibilities: jobData.responsibilities,
+        status: jobData.status,
+      })
+      .select()
+      .single();
+
+    if (!error && data) {
+      newJob.id = data.id;
+    }
+  } catch (err) {
+    console.warn("Could not insert job into Supabase, using in-memory store:", err);
+  }
+
+  memoryStore.jobs.unshift(newJob);
+  return newJob;
+}
+
+/**
  * Fetch all applications with optional filtering
  */
 export async function getApplications(filters?: {
